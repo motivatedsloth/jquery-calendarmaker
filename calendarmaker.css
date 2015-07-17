@@ -1,0 +1,172 @@
+/*
+
+(c) 2013-2015 Constellation Web Services, LLC
+*/
+/* 
+    Created on : Jul 17, 2015, 11:37:30 AM
+    Author     : alanb
+*/
+
+/*--- calendar controller ---*/
+
+.calendar-control{
+}
+
+.calendar-control:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.calendar-control .disabled{
+    opacity: 0.0;
+}
+
+.calendar-control div{
+    float: left;
+    position: relative;
+    width: 25%;
+}
+
+.control-previous, .control-next{ 
+    cursor: pointer;
+    padding: 0;
+    text-align: center;
+}
+
+.control-previous:hover, .control-next:hover{
+    background: #ececec;
+    border-radius: 10px;
+}
+
+.month-chooser, .year-chooser{
+    text-align: center;
+}
+
+.control-month-text, .control-year-text{
+    font-size: 24px;
+    margin: 0;
+    text-align: center;
+}
+
+.control-month-text:hover, .control-year-text:hover{
+    background: #ececec;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.control-month ul, .control-year ul{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+.control-month.open ul, .control-year.open ul{
+    display: block;
+}
+
+.control-month li, .control-year li{
+    cursor: pointer;
+    padding: 4px 10px;
+}
+
+.control-month li:hover, .control-year li:hover{
+    background: #ececec;
+}
+
+/**-- calendar --**/
+.calendar{   
+}
+
+.calendar-title{
+    font-size: 18pt;
+    text-align: center;
+}
+.calendar-header, .calendar-day.calendar-day-empty{
+    display: none;
+}
+
+.calendar-day, .calendar-weekday{
+    box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.75), inset -2px -2px 0 rgba(255, 255, 255, 0.75);
+    padding: 0;
+}
+
+.calendar-date{
+    background: #98464c;
+    color: white;
+    font-size: 16px;
+    margin: 2px;
+    padding: 4px; 
+}
+
+.calendar-day.date-today .calendar-date{
+    background: #dea434;
+}
+
+.calendar-week .calendar-day.calendar-day-filler{
+    display:  none;
+}
+
+@media (min-width: 768px) {
+    .calendar-title{
+        font-size: 20pt;
+    }
+
+    .calendar-date{
+        text-align: right;
+    }
+
+    .calendar-week .calendar-date .calendar-date-string{
+        display: none;
+    }
+
+    .calendar-week, .calendar-header{
+        display: table;
+        width: 100%;
+    }
+
+    .calendar-week{
+        height: 120px;
+    }
+
+    .calendar-week .calendar-day, .calendar-header .calendar-weekday{
+        display: table-cell;
+        width: 14.285%;
+    }
+
+    .calendar-weekday{
+        background: #dea434;
+        color: white;
+        text-align: center;
+    }
+
+    .calendar-week .calendar-day{
+        background: #ececec;
+    }
+
+    .calendar-week .calendar-day.calendar-day-filler{
+        display:  table-cell;
+        opacity: .5;
+    }
+   
+}
