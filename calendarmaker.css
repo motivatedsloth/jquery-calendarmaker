@@ -102,7 +102,11 @@
     font-size: 18pt;
     text-align: center;
 }
-.calendar-header, .calendar-day.calendar-day-empty{
+.calendar-header{
+    display: none;
+}
+
+.calendar-month-name{
     display: none;
 }
 
@@ -125,6 +129,30 @@
 
 .calendar-week .calendar-day.calendar-day-filler{
     display:  none;
+}
+
+/** year view **/
+.calendar-year .calendar-month{
+    border: 2px solid #ececec;
+    border-radius: 4px;
+    float: left;
+    height: 250px;
+    margin: 20px 10px;
+    text-align: center;
+    width: 250px;
+}
+
+.calendar-year .calendar-month .calendar-header{
+    display: none;
+}
+
+.calendar-year .calendar-month .calendar-month-name{
+    display: block;
+    font-weight: bold;
+}
+
+.calendar-year .calendar-month .calendar-week{
+    height: 20px;
 }
 
 @media (min-width: 768px) {

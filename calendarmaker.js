@@ -21,12 +21,14 @@
         //containers
         var $calendar,
         $control,
+        //modules
         dsp,
         ctl;
 
         //options
         var options = {}, 
         default_options = {
+            months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
             control_container: '<div class="calendar-control"></div>',
             calendar_container: '<div class="calendar-display"></div>',
             onUpdate: function(){}
@@ -60,7 +62,7 @@
                     $calendar.append(dsp.month(dt));
                     break;
                 case "Y":
-                    $calendar.append(dsp.month(dt));
+                    $calendar.append(dsp.year(dt));
                     break;
                 case "D":
                     for(var num = interval.substr(0, interval.length - 1); num > 0; num-- ){
@@ -95,8 +97,8 @@
         var options = {},
         default_options =
         {
-            month_template: '<div class="calendar-year"></div>',
-            month_template: '<div class="calendar-month"></div>',
+            year_template: '<div class="calendar-year"></div>',
+            month_template: '<div class="calendar-month"><span class="calendar-month-name">{name}</span></div>',
             header_template: '<div class="calendar-header"></div>',
             weekday_template: '<div class="calendar-weekday"></div>',
             week_template: '<div class="calendar-week"></div>',
@@ -125,8 +127,8 @@
         function buildYear(year){
             if(!year){
                 year = new Date();
-                year.setMonth(0);
             }
+            year.setMonth(0);
             callbacks.yearBefore.fire( year );
             var $year = $(options.year_template);
             
@@ -149,7 +151,7 @@
             }
             callbacks.monthBefore.fire( month );
             var thisMonth = month.getMonth(), 
-            $month = $(options.month_template),
+            $month = $(options.month_template.replace("{name}", options.months[thisMonth])),
             checkMonth = function($day, day){
                 if(day.getMonth() !== thisMonth){
                     $day.addClass('calendar-day-filler');
@@ -301,7 +303,6 @@
 
         var options = {},
         default_options = {
-            months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
             prev_container_template: '<div class="control-previous"></div>',
             next_container_template: '<div class="control-next"></div>',
             prev_html: '<span><<</span>',
@@ -455,7 +456,7 @@
          * @returns {Boolean}
          */
         function validYear(year){
-            return $years.filter(":contains(" + year + ")").length > 0;
+            return unit === "D" || $years.filter(":contains(" + year + ")").length > 0;
         }
 
         /**
@@ -480,7 +481,7 @@
                     }
                     break;
                 case "D":
-                    temp.setDate(temp.setDate() + num);
+                    temp.setDate(temp.getDate() + num);
                     return temp;
             }
             return false;
@@ -507,7 +508,7 @@
             return options[name];
         }
         
-                /**
+        /**
          * register a callback function
          * @param {String} ident
          * @param {Function} fn
@@ -547,7 +548,7 @@
      * @param {Any} val value to pass to requested action, on->function, off->function, goTo->Date
      * @returns {town_L100.$.fn@call;each}
      */
-    $.fn.calendarmaker = function(opts, val){
+    $.fn.calendarmaker = function(opts, val, fn){
         return this.each(function(){
             var $this = $(this), data = $this.data("calendarmaker");
             if(!!data){
@@ -555,7 +556,7 @@
                     case "on":
                     case "off":
                     case "goTo":
-                        data[opts](val);
+                        data[opts](val, fn);
                 }
             }else{
                 $this.data("calendarmaker", new calendarmaker($this, opts));
