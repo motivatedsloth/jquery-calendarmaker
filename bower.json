@@ -1,0 +1,15 @@
+{
+	"name": "jquery-calendarmaker",
+	"description": "Simple calendar maker plugin, nothing fancy",
+	"main": [
+		"calendarmaker.js",
+		"calendarmaker.css"
+	],
+	"authors": [
+		"Alan Buss <al@constellationwebservices.com>"
+	],
+	"license": "MIT",
+	"homepage": "https://github.com/motivatedsloth/jquery-calendarmaker",
+	"ignore": [
+	]
+}
