@@ -11,5 +11,8 @@
 	"license": "MIT",
 	"homepage": "https://github.com/motivatedsloth/jquery-calendarmaker",
 	"ignore": [
-	]
+	],
+	"dependencies": {
+		"jquery": "~1.11"
+	}
 }
